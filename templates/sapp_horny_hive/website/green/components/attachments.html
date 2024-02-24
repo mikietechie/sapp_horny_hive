@@ -1,0 +1,19 @@
+<ul>
+    <li class="list-unstyled">
+        <h5>Attachments</h5>
+    </li>
+    {% for attachment in attachments %}
+        <li>
+            <p>{{attachment.title}} {{attachment.edit_timestamp}}</p>
+            
+            {% if attachment.link %}
+                <p>Link&nbsp;<a href="{{attachment.link}}" target="_blank" rel="noopener noreferrer">{{attachment.link}}</a></p>
+            {% endif %}
+            
+            {% if attachment.link %}
+                <p>File&nbsp;<a href="{{attachment.file.url}}" download>{{attachment.file.name}}</a></p>
+            {% endif %}
+                
+        </li>
+    {% endfor %}
+</ul>

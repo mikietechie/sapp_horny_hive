@@ -1,0 +1,66 @@
+{% extends 'sapp_embassies/website/green/layout.html' %}
+
+{% block title %}
+{{ block.super }} | Other Embassies
+{% endblock title %}
+
+{% block content %}
+<main id="main">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Embassies List Page</h2>
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>Embassies List Page</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+  <section class="inner-page">
+    <div class="container">
+      <div class="section-title">
+        <h2>{{settings.country_name}} Embassies Abroad</h2>
+        <!-- <p></p> -->
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Country</th>
+                  <th>Website</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                {% for embassy in embassies %}
+                  <tr>
+                    <td>
+                      {{embassy.title}}
+                    </td>
+                    <td>{{embassy.country}}</td>
+                    <td>
+                      <a href="{{embassy.website}}">{{embassy.website}}</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+                  
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<!-- End #main -->
+{% endblock content %}

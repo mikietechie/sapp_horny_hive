@@ -1,0 +1,83 @@
+{% extends 'sapp_embassies/website/green/layout.html' %}
+
+{% block title %}
+{{ block.super }} | {{program.title}}
+{% endblock title %}
+
+{% block content %}
+<main id="main">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>{{program.title}}</h2>
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/programs">Programs</a></li>
+          <li>{{program.title}}</li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+  <!-- End Breadcrumbs -->
+
+
+  {% if program.image %}
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" style="height: 50vh;">
+    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+      <!-- <ol class="carousel-indicators" id="hero-carousel-indicators"></ol> -->
+
+      <div class="carousel-inner" role="listbox">
+        <!-- Slide 1 -->
+        <div class="carousel-item active" style="background-image: url({{program.image.url}})">
+          <div class="carousel-container">
+            <div class="container">
+              <h2 class="animate__animated animate__fadeInDown">{{program.title}}</h2>
+              <!-- <p class="animate__animated animate__fadeInUp">{% firstof embassy.header_1_text "" %}</p> -->
+              <!-- {% if embassy.header_1_link %}
+                <a href="{{embassy.header_1_link}}" class="btn-get-started animate__animated animate__fadeInUp">Expand</a>
+                {% endif %} -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- End Hero -->
+  {% endif %}
+
+
+  <section class="inner-program">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 overflow-hidden mb-5">
+          {{program.about | safe}}
+        </div>
+        <div class="col-12 mb-5">
+          
+          {% with program.attachments as attachments %}
+            {% include 'sapp_embassies/website/green/components/attachments.html' %}
+          {% endwith %}
+          
+          {% with program.notes as notes %}
+            {% include 'sapp_embassies/website/green/components/notes.html' %}
+          {% endwith %}
+            
+          {% if program.link %}
+          <a href="{{program.link}}" class="btn btn-link">More</a>
+          {% endif %}
+            
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<!-- End #main -->
+{% endblock content %}

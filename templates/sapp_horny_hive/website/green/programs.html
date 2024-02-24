@@ -1,0 +1,61 @@
+{% extends 'sapp_embassies/website/green/layout.html' %}
+
+{% block title %}
+{{ block.super }} | Programs
+{% endblock title %}
+
+{% block content %}
+<main id="main">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Programs Page</h2>
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>Programs Page</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+  <section class="inner-page">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>{{settings.country_name}} - {{embassy.country}} Programs</h2>
+        <!-- <p></p> -->
+      </div>
+      
+      <div class="row">
+        {% for item in embassy.programs %}
+        <div class="col-md-6">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="{{item.image.url}}" class="card-img w-100" alt="" style="max-height: 280px;">
+                </div>
+                <div class="col-md-8">
+                  <h4><a href="/program/{{item.title}}/{{item.id}}/">{{item.title}}</a></h4>
+                  <div>
+                    {{item.about | safe | truncatechars_html:50 }}
+                  </div>
+                  <a href="{% firstof item.link '/program/{{item.title}}/{{item.id}}/' %}" class="btn btn-link"><i class="bi bi-link"></i>&nbsp;More</a>
+                    
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+</main>
+<!-- End #main -->
+{% endblock content %}

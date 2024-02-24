@@ -1,0 +1,86 @@
+{% extends 'sapp_embassies/website/green/layout.html' %}
+
+{% block title %}
+{{ block.super }} | Staff
+{% endblock title %}
+
+{% block content %}
+<main id="main">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Staff Page</h2>
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>Staff Page</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+  <section class="inner-page">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>
+          The team representing {{settings.country_name}} in {{embassy.country}}</h2>
+        <!-- <p></p> -->
+      </div>
+      <div class="row">
+        {% for item in embassy.public_staff %}
+        <div class="col-md-12">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="{{item.image.url}}" class="card-img w-100" alt="" style="max-height: 280px;">
+                </div>
+                <div class="col-md-8">
+                  <p>{{item.position}}</p>
+                  <h4>{{item.title}} {{item.full_name}}</h4>
+                  <div class="">
+                    {% if item.social_instagram %}
+                      <a href="{{item.social_instagram}}" class="mx-2"><i class="bi bi-instagram"></i></a>
+                    {% endif %}
+                    {% if item.social_facebook %}
+                      <a href="{{item.social_facebook}}" class="mx-2"><i class="bi bi-facebook"></i></a>
+                    {% endif %}
+                    {% if item.social_youtube %}
+                      <a href="{{item.social_youtube}}" class="mx-2"><i class="bi bi-youtube"></i></a>
+                    {% endif %}
+                    {% if item.social_vk %}
+                      <a href="{{item.social_vk}}" class="mx-2"><i class="bi bi-vimeo"></i></a>
+                    {% endif %}
+                    {% if item.social_wechat %}
+                      <a href="{{item.social_wechat}}" class="mx-2"><i class="bi bi-wechat"></i></a>
+                    {% endif %}
+                    {% if item.social_twitter %}
+                      <a href="{{item.social_twitter}}" class="mx-2"><i class="bi bi-twitter"></i></a>
+                    {% endif %}
+                      
+                  </div>
+                  <div>
+                    
+                    {{item.about | safe | truncatechars_html:300 }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <!-- {% for staff in embassy.staff %}
+      <div class="row mb-3">
+      </div>
+      {% endfor %} -->
+    </div>
+  </section>
+
+</main>
+<!-- End #main -->
+{% endblock content %}

@@ -1,0 +1,60 @@
+{% extends 'sapp_embassies/website/green/layout.html' %}
+
+{% block title %}
+{{ block.super }} | News
+{% endblock title %}
+
+{% block content %}
+<main id="main">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>News Page</h2>
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>News Page</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+  <section class="inner-page">
+    <div class="container">
+      <div class="section-title">
+        <h2>News about {{settings.country_name}} in {{embassy.country}}</h2>
+        <!-- <p></p> -->
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <ol>
+            {% for item in embassy.news %}
+            <li class="mb-3">
+              <a href="/news/article/{{item.title}}/{{item.id}}/" class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <img src="{{item.image.url}}" class="card-img w-100" alt="{{item.ititle}}" style="max-height: 200px;">
+                    </div>
+                    <div class="col-md-10">
+                      <h4>{{item.title}}</h4>
+                      <h6>{{item.edit_timestamp}}</h6>
+                      {{item.about | safe | truncatechars_html:50 }}
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            {% endfor %}
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<!-- End #main -->
+{% endblock content %}

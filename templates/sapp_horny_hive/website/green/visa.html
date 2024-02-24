@@ -1,0 +1,44 @@
+{% extends 'sapp_embassies/website/green/layout.html' %}
+
+{% block title %}
+{{ block.super }} | VISA
+{% endblock title %}
+
+{% block content %}
+<main id="main">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>VISA Info</h2>
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>VISA</li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+  <!-- End Breadcrumbs -->
+
+
+  <section class="inner-page">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>{{embassy.visa_term.title}}</h2>
+        <!-- <p></p> -->
+      </div>
+      <div class="row">
+        <div class="col-12 overflow-hidden">
+          {{embassy.visa_term.detail | safe}}
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<!-- End #main -->
+{% endblock content %}

@@ -1,0 +1,186 @@
+{% load sapp_filters %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>{% block title %}{{embassy.title}}{% endblock title %}</title>
+
+  {% block meta %}
+  <meta content="Embassy of {{settings.country_name}} in {{embassy.country_name}}" name="description">
+  <meta
+    content="Embassy, {{settings.country_name}}, Consulate, Ambassador, {{settings.official_language}}, {{settings.official_currencies}}, {{settings.official_languages}}"
+    name="keywords">
+  {% endblock meta %}
+
+
+  <!-- Favicons -->
+  <link href="{{embassy.image.url}}" rel="icon">
+  <link href="{{embassy.image.url}}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+
+  {% block css %}
+  <!-- Vendor CSS Files -->
+  <link href="/static/sapp_embassies/website/green/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="/static/sapp_embassies/website/green/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/sapp_embassies/website/green/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/static/sapp_embassies/website/green/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/static/sapp_embassies/website/green/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/static/sapp_embassies/website/green/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/static/sapp_embassies/website/green/assets/css/style.css" rel="stylesheet">
+  {% endblock css %}
+
+  {% block style %}
+  <style></style>
+  {% endblock style %}
+</head>
+
+<body>
+
+  {% block body %}
+
+  {% block topbar %}
+  <!-- ======= Top Bar ======= -->
+  <section id="topbar" class="d-flex align-items-center">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="bi bi-envelope-fill"></i><a href="mailto:{{embassy.email}}">{{embassy.email}}</a>
+        <i class="bi bi-phone-fill phone-icon"></i> {{embassy.telephone}}
+      </div>
+      <div class="social-links d-none d-md-block">
+        <a href="{{embassy.social_twitter}}" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="{{embassy.social_facebook}}" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="{{embassy.social_instagram}}" class="instagram"><i class="bi bi-instagram"></i></a>
+      </div>
+    </div>
+  </section>
+
+  {% endblock topbar %}
+
+  {% block header %}
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="/">{{embassy.title}}</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="/" class="logo me-auto"><img src="/static/sapp_embassies/website/green/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link" href="/">Home</a></li>
+          <li><a class="nav-link" href="/staff/">Staff</a></li>
+          <li><a class="nav-link" href="/programs/">Programs</a></li>
+          <li><a class="nav-link" href="/business/">Business</a></li>
+          <li><a class="nav-link" href="/news/">News</a></li>
+          <li><a class="nav-link" href="/visa/">Visa</a></li>
+          <li class="dropdown"><a href="#"><span>Pages</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/embassies/">Other Embassies</a></li>
+              <li><a href="/gallery/">Gallery</a></li>
+              {% for page in embassy.pages %}
+              <li><a href="/page/{{page.title}}/{{page.id}}/">{{page.title}}</a></li>
+              {% endfor %}
+
+            </ul>
+          </li>
+          <!-- <li><a class="nav-link" href="#services">Services</a></li>
+          <li><a class="nav-link " href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link" href="#team">Team</a></li>
+          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link" href="#contact">Contact</a></li> -->
+          {% if request.user.is_authenticated %}
+          <li><a class="nav-link" href="{{request.user.account_url}}">Account</a></li>
+          <a class="nav-link" href="{% settings_value 'LOGOUT_URL' %}">Logout</a>
+          {% else %}
+          <li><a class="nav-link" href="{% settings_value 'LOGIN_URL' %}">Login</a></li>
+          <!-- <li><a class="nav-link" href="{% settings_value 'REGISTER_URL' %}">Register</a></li> -->
+          {% endif %}
+          <li><a class="getstarted scrollto" href="/#contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+  {% endblock header %}
+
+
+  {% block content %}
+  {% endblock content %}
+
+
+  {% block footer %}
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>{{embassy.title}}</h3>
+      <p>The warmth of {{settings.country_name}}</p>
+      <div class="social-links">
+        <a href="{{embassy.social_twitter}}" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="{{embassy.social_facebook}}" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="{{embassy.social_instagram}}" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <!-- <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a> -->
+      </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>{{settings.country_name}} 1980 -
+            <script>document.write((new Date()).getFullYear())</script>
+          </span></strong>.
+      </div>
+      <div class="credits">
+        Designed by <a href="https://mikeio.web.app/">Mike Z</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+  {% endblock footer %}
+
+  {% endblock body %}
+
+
+  {% block js %}
+  <!-- Vendor JS Files -->
+  <script src="/static/sapp_embassies/website/green/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/sapp_embassies/website/green/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/static/sapp_embassies/website/green/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/static/sapp_embassies/website/green/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/static/sapp_embassies/website/green/assets/js/main.js"></script>
+  {% endblock js %}
+
+  {% block script %}
+  <script></script>
+  {% endblock script %}
+
+</body>
+
+</html>

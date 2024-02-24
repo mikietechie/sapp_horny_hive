@@ -1,0 +1,62 @@
+{% extends 'sapp_embassies/website/green/layout.html' %}
+
+{% block title %}
+{{ block.super }} | Business
+{% endblock title %}
+
+{% block content %}
+<main id="main">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Business Page</h2>
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>Business Page</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+  <section class="inner-page">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>{{settings.country_name}} brands in {{embassy.country}}</h2>
+        <!-- <p></p> -->
+      </div>
+      
+      <div class="row">
+        {% for item in embassy.brands.all %}
+        <div class="col-md-6">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="{{item.image.url}}" class="card-img w-100" alt="" style="max-height: 280px;">
+                </div>
+                <div class="col-md-8">
+                  <h4>{{item.name}}</h4>
+                  <p>{{item.description}}</p>
+                  
+                  {% if item.link %}
+                    <a href="{{item.link}}" class="btn btn-link">More</a>
+                  {% endif %}
+                    
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+</main>
+<!-- End #main -->
+{% endblock content %}

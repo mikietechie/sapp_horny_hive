@@ -1,0 +1,11 @@
+<ul>
+    <li class="list-unstyled">
+        <h5>Notes</h5>
+    </li>
+    {% for note in notes %}
+        <li>
+            <p>{{note.title}} {{note.edit_timestamp}}</p>
+            <div class="overflow-hidden">{{note.text | safe}}</div>   
+        </li>
+    {% endfor %}
+</ul>
