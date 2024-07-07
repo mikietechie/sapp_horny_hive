@@ -12,7 +12,7 @@
 {% block maincol %}
 
 
-<a href="/{% settings_value 'SAPP_URL' %}/module/sapp_horny_hive/" class="col-md-6 col-lg-4">
+<a href="/{% settings_value 'SAPP_URL' %}/sapp_horny_hive/module/" class="col-md-6 col-lg-4">
     <div class="card">
         <div class="card-body">
             <div class="row align-items-center m-l-0">
@@ -69,7 +69,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const headers = { 'X-CSRFToken': '{{ csrf_token }}' }
-        const methodsBaseURL = `/{% settings_value 'SAPP_URL' %}/api/method/sapp_horny_hive/`
+        const methodsBaseURL = `/{% settings_value 'SAPP_URL' %}/sapp_horny_hive/api/method/`
         const setupHoodProfileChart = () => {
             const render = (data) => {
                 (
